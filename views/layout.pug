@@ -1,0 +1,20 @@
+html
+    
+    head
+        
+        include includes/head
+    
+    body
+        
+        include includes/navigation
+
+        if settings.env === "development"
+            span.center-block.label.label-warning Development
+        
+        div.container
+            
+            include includes/messages
+    
+            block content
+
+        include includes/scripts
