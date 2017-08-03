@@ -1,5 +1,8 @@
 # Weighter
 
+[![Build Status](https://travis-ci.org/bradgarropy/weighter.svg)](https://travis-ci.org/bradgarropy/weighter)
+[![NSP Status](https://nodesecurity.io/orgs/brad-garropy/projects/0415281c-be83-4517-885f-caffaba98b32/badge)](https://nodesecurity.io/orgs/brad-garropy/projects/0415281c-be83-4517-885f-caffaba98b32)
+
 *Web application to track your weight over time!*
 
 
