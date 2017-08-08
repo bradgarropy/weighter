@@ -28,17 +28,22 @@ block content
         tr
             th.text-center Date
             th.text-center Weight
-            th.text-center
-            th.text-center
+            th.text-center Delete
+            th.text-center Edit
         
         for weight in weights
             tr
                 td.text-center #{moment(weight.date).utc().format("MM/DD/YYYY")}
                 td.text-center #{weight.weight}
                 td.text-center
-                    a(href="#")
+                    a.delete-weight(href="#" data-id=weight._id)
                         span.glyphicon.glyphicon-trash.text-danger
                 td.text-center
                     a(href="#")
                         span.glyphicon.glyphicon-edit.text-info
                             
+
+block append scripts
+        
+    // weight js
+    script(src="/js/weight.js")

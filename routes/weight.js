@@ -1,4 +1,5 @@
 const validator = require("express-validator");
+const passport  = require("../middleware/passport");
 const express   = require("express");
 const Weight    = require("../models/weight");
 
@@ -7,7 +8,7 @@ const Weight    = require("../models/weight");
 const router = express.Router();
 
 
-router.get("/", function(request, response) {
+router.get("/", passport.ensure_authenticated, function(request, response) {
 
     Weight.find({"user_id": request.user._id}, function(err, weights) {
 
@@ -62,6 +63,28 @@ router.post("/", function(request, response) {
             return;
 
         });
+    });
+});
+
+
+router.delete("/:id", function(request, response) {
+
+    let id = request.params.id;
+
+    Weight.findByIdAndRemove(id, function(err, doc) {
+
+        // db remove error
+        if(err) {
+            console.log(err);
+            response.redirect("/weight");
+            return;
+        }
+
+        // remove weight success
+        console.log(doc);
+        response.json(doc);
+        return;
+
     });
 });
 
