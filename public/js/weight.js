@@ -2,8 +2,9 @@ $(document).ready(function() {
 
     $(".delete-weight").click(function(event) {
 
-        let id  = $(this).attr("data-id");
-        let url = "/weight/" + id;
+        let resource = $(this).attr("href");
+        let id       = $(this).attr("data-id");
+        let url      = [resource, id].join("/");
 
         delete_weight(url);
 
@@ -13,8 +14,6 @@ $(document).ready(function() {
 
 
 function delete_weight(url) {
-
-    console.log("Deleting weight at: " + url);
 
     $.ajax({url:     url,
             type:    "DELETE",

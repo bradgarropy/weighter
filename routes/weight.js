@@ -10,7 +10,9 @@ const router = express.Router();
 
 router.get("/", passport.ensure_authenticated, function(request, response) {
 
-    Weight.find({"user_id": request.user._id}, function(err, weights) {
+    let query = {user_id: request.user._id};
+
+    Weight.find(query, function(err, weights) {
 
         // db find error
         if(err) {
@@ -19,7 +21,7 @@ router.get("/", passport.ensure_authenticated, function(request, response) {
             return;
         }
 
-        response.render("weight", {"weights": weights, "moment": require("moment")});
+        response.render("weight/weight", {"weights": weights, "moment": require("moment")});
         return;
 
     });
@@ -39,7 +41,7 @@ router.post("/", function(request, response) {
 
         // form errors
         if(!errors.isEmpty()) {
-            response.render("weight", {errors: errors.array()});
+            response.render("weight/weight", {errors: errors.array()});
             return;
         }
 
@@ -67,11 +69,56 @@ router.post("/", function(request, response) {
 });
 
 
+router.get("/:id", passport.ensure_authenticated, function(request, response) {
+
+    let id = request.params.id;
+
+    Weight.findById(id, function(err, weight) {
+
+        // db find error
+        if(err) {
+            console.log(err);
+            response.redirect("/");
+            return;
+        }
+
+        response.render("weight/edit", {"weight": weight, "moment": require("moment")});
+        return;
+
+    });
+});
+
+
+router.patch("/:id", passport.ensure_authenticated, function(request, response) {
+
+    let id = request.params.id;
+
+    let weight = {};
+    weight.date   = request.body.date;
+    weight.weight = request.body.weight;
+
+    Weight.findByIdAndUpdate(id, weight, function(err, weight) {
+
+        // db find error
+        if(err) {
+            console.log(err);
+            response.redirect("/");
+            return;
+        }
+
+        // update weight success
+        response.json(weight);
+        return;
+
+    });
+});
+
+
 router.delete("/:id", function(request, response) {
 
     let id = request.params.id;
 
-    Weight.findByIdAndRemove(id, function(err, doc) {
+    Weight.findByIdAndRemove(id, function(err, weight) {
 
         // db remove error
         if(err) {
@@ -81,8 +128,7 @@ router.delete("/:id", function(request, response) {
         }
 
         // remove weight success
-        console.log(doc);
-        response.json(doc);
+        response.json(weight);
         return;
 
     });

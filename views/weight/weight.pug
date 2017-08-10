@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layout.pug
 
 
 block content
@@ -6,7 +6,7 @@ block content
     h1 Weight
     
     br
-
+        
     // weight form
     form(method="post" action="/weight")
 
@@ -19,7 +19,7 @@ block content
             input.form-control(type="number" name="weight")
 
         button.btn.btn-default(type="submit") Submit
-
+        
     br
 
     // user weights
@@ -36,10 +36,10 @@ block content
                 td.text-center #{moment(weight.date).utc().format("MM/DD/YYYY")}
                 td.text-center #{weight.weight}
                 td.text-center
-                    a.delete-weight(href="#" data-id=weight._id)
+                    a.delete-weight(href="/weight" data-id=weight._id)
                         span.glyphicon.glyphicon-trash.text-danger
                 td.text-center
-                    a(href="#")
+                    a(href="/weight/" + weight._id)
                         span.glyphicon.glyphicon-edit.text-info
                             
 

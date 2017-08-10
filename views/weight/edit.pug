@@ -1,0 +1,26 @@
+extends ../layout.pug
+
+
+block content
+
+    h1 Edit Weight
+    
+    br
+        
+    // weight form
+    form(id="edit-form" method="post" action="/weight" data-id=weight._id)
+
+        div.form-group
+            label Date
+            input.form-control(type="date" name="date" value=moment(weight.date).utc().format("YYYY-MM-DD"))
+
+        div.form-group
+            label Weight
+            input.form-control(type="number" name="weight" value=weight.weight)
+
+        button.btn.btn-default(type="submit") Submit
+
+block append scripts
+        
+    // edit weight js
+    script(src="/js/edit_weight.js")
