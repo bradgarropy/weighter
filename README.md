@@ -3,10 +3,16 @@
 [![Build Status](https://travis-ci.org/bradgarropy/weighter.svg)](https://travis-ci.org/bradgarropy/weighter)
 [![NSP Status](https://nodesecurity.io/orgs/brad-garropy/projects/0415281c-be83-4517-885f-caffaba98b32/badge)](https://nodesecurity.io/orgs/brad-garropy/projects/0415281c-be83-4517-885f-caffaba98b32)
 
-*Web application to track your weight over time!*
+Using my [NWA Template](https://github.com/bradgarropy/nwa) as a starting point, I created this server side web application where users can track their weight over time.
+
+See the project here:
+https://weighter-production.herokuapp.com/
 
 
 ## Usage
+
+If you would like to build and run this site locally, follow the instructions below.
+
 
 First, clone the repository.
 
